@@ -1,16 +1,21 @@
 package com.example.ArriendaTuFinca.controllers;
 
-import com.example.ArriendaTuFinca.models.Usuario;
-import com.example.ArriendaTuFinca.services.UsuarioService;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.http.MediaType;
+
+import com.example.ArriendaTuFinca.models.Usuario;
+import com.example.ArriendaTuFinca.services.UsuarioService;
+import com.example.ArriendaTuFinca.DTOs.UsuarioDTO;
+
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping( value = "/api/usuarios")
 public class UsuarioController {
 
     // Inyección de dependencias
@@ -20,43 +25,32 @@ public class UsuarioController {
     // CRUD Endpoints
 
     // Read
-    @GetMapping
-    public List<Usuario> listarUsuarios() {
-        return usuarioService.listarUsuarios();
+    @GetMapping( value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public UsuarioDTO obtenerUsuarioPorId(@PathVariable Long id) {
+        return usuarioService.obtenerUsuarioPorId(id);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable Long id) {
-        Optional<Usuario> usuario = usuarioService.obtenerUsuarioPorId(id);
-        return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    // read all
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<UsuarioDTO> get() {
+        return usuarioService.get();
     }
 
     // Create
-    @PostMapping
-    public Usuario crearUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.guardarUsuario(usuario);
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public UsuarioDTO crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        return usuarioService.crearUsuario(usuarioDTO);
     }
 
     // Update
-    @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
-        Optional<Usuario> usuarioExistente = usuarioService.obtenerUsuarioPorId(id);
-        if (usuarioExistente.isPresent()) {
-            usuario.setId(id);
-            return ResponseEntity.ok(usuarioService.guardarUsuario(usuario));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping(value = "/{id}")
+    public UsuarioDTO actualizarUsuario(@PathVariable Long id, @RequestBody UsuarioDTO usuarioDTO) {
+        return usuarioService.actualizarUsuario(id, usuarioDTO);
     }
 
     // Delete
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarUsuario(@PathVariable Long id) {
-        if (usuarioService.obtenerUsuarioPorId(id).isPresent()) {
-            usuarioService.eliminarUsuario(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public UsuarioDTO eliminarUsuario(@PathVariable Long id) {
+        return usuarioService.eliminarUsuario(id);
     }
 }

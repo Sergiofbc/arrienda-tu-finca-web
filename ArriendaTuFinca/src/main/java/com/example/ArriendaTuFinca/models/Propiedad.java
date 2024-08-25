@@ -26,7 +26,7 @@ public class Propiedad {
     private Long propiedadId;
 
     @ManyToOne
-    @JoinColumn(name = "arrendadorId") // Mapea esta columna a "arrendadorId" en la base de datos
+    @JoinColumn(name = "arrendadorId", referencedColumnName = "idUsuario", unique = false, nullable = false)
     private Usuario arrendador;
 
     private String imagen;
