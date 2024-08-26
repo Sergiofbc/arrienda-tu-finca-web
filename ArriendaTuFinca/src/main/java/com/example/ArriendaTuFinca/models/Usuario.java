@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ import lombok.Setter;
 
 
 @Entity
+@Table(name = "Usuario")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -36,6 +38,7 @@ public class Usuario {
     private String correo;
     private String telefono;
     private String contrasenia;
+    Estado estado;
 
     //@Enumerated(EnumType.STRING)
     private String rol;

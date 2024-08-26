@@ -24,33 +24,43 @@ public class UsuarioController {
 
     // CRUD Endpoints
 
-    // Read
-    @GetMapping( value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public UsuarioDTO obtenerUsuarioPorId(@PathVariable Long id) {
-        return usuarioService.obtenerUsuarioPorId(id);
-    }
-
-    // read all
+    @CrossOrigin
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UsuarioDTO> get() {
         return usuarioService.get();
     }
 
+    @CrossOrigin
+    @GetMapping( value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public UsuarioDTO obtenerUsuarioPorId(@PathVariable Long id) {
+        return usuarioService.obtenerUsuarioPorId(id);
+    }
+
     // Create
+    @CrossOrigin
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public UsuarioDTO crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.crearUsuario(usuarioDTO);
     }
 
     // Update
-    @PutMapping(value = "/{id}")
-    public UsuarioDTO actualizarUsuario(@PathVariable Long id, @RequestBody UsuarioDTO usuarioDTO) {
-        return usuarioService.actualizarUsuario(id, usuarioDTO);
+    @CrossOrigin
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public UsuarioDTO actualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        return usuarioService.actualizarUsuario(usuarioDTO);
     }
 
     // Delete
+    @CrossOrigin
+    @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public void eliminarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        usuarioService.eliminarUsuario(usuarioDTO);
+    }
+
+    // Delete by id
+    @CrossOrigin
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public UsuarioDTO eliminarUsuario(@PathVariable Long id) {
-        return usuarioService.eliminarUsuario(id);
+    public void eliminarUsuario(@PathVariable Long id) {
+        usuarioService.eliminarUsuarioPorId(id);
     }
 }

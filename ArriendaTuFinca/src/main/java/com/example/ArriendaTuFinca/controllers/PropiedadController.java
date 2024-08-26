@@ -26,34 +26,34 @@ public class PropiedadController {
     
     // CRUD Endpoints
 
-    // Read
-    @GetMapping( value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public PropiedadDTO obtenerPropiedadPorId(@PathVariable Long id) {
-        return propiedadService.obtenerPropiedadPorId(id);
-    }
-
-    // read all
+    @CrossOrigin
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PropiedadDTO> get() {
         return propiedadService.get();
     }
 
+    @CrossOrigin
+    @GetMapping( value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public PropiedadDTO obtenerPropiedadPorId(@PathVariable Long id) {
+        return propiedadService.obtenerPropiedadPorId(id);
+    }
+
     // Create
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public PropiedadDTO crearPropiedad(@RequestBody PropiedadDTO propiedadDTO) {
         return propiedadService.crearPropiedad(propiedadDTO);
     }
 
     // Update
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public PropiedadDTO actualizarPropiedad(@PathVariable Long id, @RequestBody PropiedadDTO propiedadDTO) {
         return propiedadService.actualizarPropiedad(id, propiedadDTO);
     }
 
     // Delete
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public PropiedadDTO eliminarPropiedad(@PathVariable Long id) {
-        return propiedadService.eliminarPropiedad(id);
+    public void eliminarPropiedad(@PathVariable Long id) {
+        propiedadService.eliminarPropiedad(id);
     }
     
 }

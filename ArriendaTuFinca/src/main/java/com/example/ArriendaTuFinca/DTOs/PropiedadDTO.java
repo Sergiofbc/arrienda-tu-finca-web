@@ -22,4 +22,5 @@ public class PropiedadDTO {
     private int valorNoche;
     private boolean visible;
     private int calificacion;
+    private String estado;
 }

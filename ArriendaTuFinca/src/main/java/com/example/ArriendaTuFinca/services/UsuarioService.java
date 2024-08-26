@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.ArriendaTuFinca.models.Estado;
 import com.example.ArriendaTuFinca.models.Usuario;
 import com.example.ArriendaTuFinca.repository.UsuarioRepository;
 import com.example.ArriendaTuFinca.DTOs.UsuarioDTO;
@@ -29,38 +30,49 @@ public class UsuarioService {
     //get
     public List<UsuarioDTO> get() {
         List<Usuario> usuarios = usuarioRepository.findAll();
-        return Arrays.stream(modelMapper.map(usuarios, UsuarioDTO[].class))
-               .collect(Collectors.toList());
+        List<UsuarioDTO> usuariosDTO = usuarios.stream() //convertir lista de usuarios a lista de usuariosDTO
+                                       .map(usuario -> modelMapper.map(usuario, UsuarioDTO.class))
+                                       .collect(Collectors.toList());   
+        return usuariosDTO;
     }
 
     //get por id
     public UsuarioDTO obtenerUsuarioPorId(Long id) {
-        Usuario usuario = usuarioRepository.findById(id)
-                          .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        return modelMapper.map(usuario, UsuarioDTO.class);
+        Optional<Usuario> usuario = usuarioRepository.findById(id); //Optional es un contenedor que puede o no contener un valor no nulo
+        UsuarioDTO usuarioDTO = null;
+        if (usuario.isPresent()) {
+            usuarioDTO = modelMapper.map(usuario.get(), UsuarioDTO.class);
+        }
+        return usuarioDTO;
     }
 
     //post
     public UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario = modelMapper.map(usuarioDTO, Usuario.class);
-        Usuario nuevoUsuario = usuarioRepository.save(usuario);
-        return modelMapper.map(nuevoUsuario, UsuarioDTO.class);
+        usuario.setEstado(Estado.ACTIVE);
+        usuario = usuarioRepository.save(usuario);
+        usuarioDTO = modelMapper.map(usuario, UsuarioDTO.class);
+        return usuarioDTO;
     }
 
     //put
-    public UsuarioDTO actualizarUsuario(Long id, UsuarioDTO usuarioDTO) {
+    public UsuarioDTO actualizarUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario = modelMapper.map(usuarioDTO, Usuario.class);
-        usuario.setIdUsuario(id);
-        Usuario usuarioActualizado = usuarioRepository.save(usuario);
-        return modelMapper.map(usuarioActualizado, UsuarioDTO.class);
+        usuario.setEstado(Estado.ACTIVE);
+        usuario = usuarioRepository.save(usuario);
+        usuarioDTO = modelMapper.map(usuario, UsuarioDTO.class);
+        return usuarioDTO;
     }
 
     //delete
-    public UsuarioDTO eliminarUsuario(Long id) {
-        Usuario usuario = usuarioRepository.findById(id)
-                          .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    public void eliminarUsuario(UsuarioDTO usuarioDTO) {
+        Usuario usuario = modelMapper.map(usuarioDTO, Usuario.class);
         usuarioRepository.delete(usuario);
-        return modelMapper.map(usuario, UsuarioDTO.class);
+    }
+
+    //delete por id
+    public void eliminarUsuarioPorId(Long id) {
+        usuarioRepository.deleteById(id);
     }
 
 }
