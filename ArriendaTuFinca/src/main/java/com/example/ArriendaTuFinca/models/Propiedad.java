@@ -26,24 +26,24 @@ import javax.persistence.Transient;
 public class Propiedad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long propiedadId;
+    private Long propiedad_id;
 
     @ManyToOne
-    @JoinColumn(name = "arrendadorId", referencedColumnName = "idUsuario", unique = false, nullable = false)
-    private Usuario arrendador;
+    @JoinColumn(name = "arrendador_id", referencedColumnName = "usuario_id", unique = false, nullable = false)  //arrendador_id es el nombre de la columna en la tabla Propiedad
+    private Usuario arrendador_id; //un dto?
 
     private String imagen;
     private String nombre;
     private String departamento;
     private String municipio;
-    private String tipoDeIngreso;
+    private String tipo_de_ingreso;
     private String descripcion;
-    private int cantBanos;
-    private int cantHabitaciones;
+    private int cant_banos;
+    private int cant_habitaciones;
     private boolean mascotas;
     private boolean piscina;
     private boolean asador;
-    private int valorNoche;
+    private int valor_noche;
     private boolean visible;
     private int calificacion;
 

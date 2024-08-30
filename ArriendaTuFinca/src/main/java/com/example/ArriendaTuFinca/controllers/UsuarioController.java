@@ -43,7 +43,7 @@ public class UsuarioController {
         return usuarioService.crearUsuario(usuarioDTO);
     }
 
-    // Update
+    // UpdateCLARO NO FUNCIONA PORQUE NO HACE NADA CON EL ID QUE LLEGA 
     @CrossOrigin
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public UsuarioDTO actualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) {

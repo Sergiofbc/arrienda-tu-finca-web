@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.example.ArriendaTuFinca.DTOs.PropiedadDTO;
 import com.example.ArriendaTuFinca.DTOs.UsuarioDTO;
@@ -22,9 +23,21 @@ import org.modelmapper.convention.MatchingStrategies;
 @Configuration
 public class ModelMapperConfiguration {
 
+    // Configuración de ModelMapper PROFESOR
+    @Bean
+    public ModelMapper moddelMapper(){
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return modelMapper;
+    }
+
+
+
+
+    /* 
     @Autowired
     private PropiedadRepository propiedadRepository;
-    
+
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
@@ -45,7 +58,7 @@ public class ModelMapperConfiguration {
             mapper.using(ctx -> {
                 List<Propiedad> source = (List<Propiedad>) ctx.getSource();
                 return source.stream()
-                                        .map(propiedad -> propiedad.getPropiedadId())
+                                        .map(propiedad -> propiedad.getPropiedad_id())
                                         .collect(Collectors.toList());
             });
         });
@@ -62,10 +75,10 @@ public class ModelMapperConfiguration {
         modelMapper.typeMap(Propiedad.class, PropiedadDTO.class).addMappings(mapper -> {
             mapper.using(ctx -> {
                 Propiedad source = (Propiedad) ctx.getSource();
-                return source.getPropiedadId();
+                return source.getPropiedad_id();
             });
         });
         
         return modelMapper;
-    }
+    }*/
 }

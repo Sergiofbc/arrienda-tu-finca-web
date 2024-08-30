@@ -5,15 +5,19 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import ch.qos.logback.core.joran.action.TimestampAction;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -22,34 +26,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-
 @Entity
-@Table(name = "Usuario")
+@Table(name = "Solicitud")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+public class Solicitud {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long usuario_id;
+    private Long solicitud_id;
 
-    private String nombre;
-    private String correo;
-    private String telefono;
-    private String contrasenia;
-    Estado estado;
+    @ManyToOne
+    @JoinColumn(name = "arrendatario_id", referencedColumnName = "usuario_id", unique = false, nullable = false) 
+    private Usuario arrendatario_id;
 
-    //@Enumerated(EnumType.STRING)
-    private String rol;
+    @ManyToOne //raro
+    @JoinColumn(name = "propiedad_id", referencedColumnName = "propiedad_id", unique = false, nullable = false) 
+    private Propiedad propiedad_id;
 
-    /*
-    //esto la verdad no se pa que
-    @OneToMany(mappedBy = "arrendador_id")
-    private List<Propiedad> propiedades = new ArrayList<>();
-
-    @OneToMany(mappedBy = "arrendatario_id")
-    private List<Solicitud> solicitudes = new ArrayList<>();
-
-    */
+    private LocalDate fecha_inicio;
+    private LocalDate fecha_fin;
+    private int precio_por_noche;
+    
 }
