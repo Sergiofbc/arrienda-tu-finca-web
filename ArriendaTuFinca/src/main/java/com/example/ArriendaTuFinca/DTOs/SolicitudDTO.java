@@ -1,12 +1,7 @@
 package com.example.ArriendaTuFinca.DTOs;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
-import com.example.ArriendaTuFinca.DTOs.PropiedadDTO;
-import com.example.ArriendaTuFinca.DTOs.UsuarioDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 
 @Getter

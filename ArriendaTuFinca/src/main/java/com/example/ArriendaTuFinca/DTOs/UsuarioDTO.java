@@ -1,11 +1,7 @@
 package com.example.ArriendaTuFinca.DTOs;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
-import com.example.ArriendaTuFinca.models.Propiedad;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Getter
 @Setter

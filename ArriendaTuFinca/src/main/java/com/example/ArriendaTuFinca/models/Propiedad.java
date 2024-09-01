@@ -30,7 +30,7 @@ public class Propiedad {
 
     @ManyToOne
     @JoinColumn(name = "arrendador_id", referencedColumnName = "usuario_id", unique = false, nullable = false)  //arrendador_id es el nombre de la columna en la tabla Propiedad
-    private Usuario arrendador_id; //un dto?
+    private Usuario arrendador_id;
 
     private String imagen;
     private String nombre;

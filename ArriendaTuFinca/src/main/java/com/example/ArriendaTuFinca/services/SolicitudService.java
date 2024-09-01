@@ -60,7 +60,6 @@ public class SolicitudService {
     }
 
     //post
-    //hacer la misma logica para el del propiedad
     //ese problema que
     public SolicitudDTO crearSolicitud(SolicitudDTO solicitudDTO) {
         Solicitud solicitud = modelMapper.map(solicitudDTO, Solicitud.class);
