@@ -11,16 +11,21 @@
 <body>
     <body>
         <div class="login-container">
+            <div class = "cont-flecha">
+                <div class = "material-symbols-outlined boton-home" onclick="window.location = '/'">arrow_back</div>
+            </div>
             <div class="logo"></div>
-            <h2>Log in to your account</h2>
-            <form>
-                <input type="text" placeholder="Username" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-            <a href="#">Can't log in?</a>
-            <div class="footer">
-                <a href="#">Privacy policy</a> | <a href="#">Terms of use</a>
+            <h2>Haz log in de tu cuenta aquí</h2>
+            <div class = "cont-formulario">
+                <form th:action="@{/api/usuarios/login}" method="post">
+                    <input type="text" name="correo" placeholder="Correo" required>
+                    <input type="password" name="contrasenia" placeholder="Contraseña" required>
+                    <button type="submit">Login</button>
+                </form>
+                <a th:href="@{/crear-usuario}">¿No tienes cuenta? Crea aquí una</a>
+                <div class="footer">
+                    <a href="#">Políticas de privacidad</a> | <a href="#">Términos de uso</a>
+                </div>
             </div>
         </div>
     </body>

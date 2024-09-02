@@ -1,19 +1,17 @@
 package com.example.ArriendaTuFinca.services;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.List;
-import java.util.ArrayList;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.ArriendaTuFinca.DTOs.UsuarioDTO;
 import com.example.ArriendaTuFinca.models.Estado;
 import com.example.ArriendaTuFinca.models.Usuario;
 import com.example.ArriendaTuFinca.repository.UsuarioRepository;
-import com.example.ArriendaTuFinca.DTOs.UsuarioDTO;
 
 
 @Service
@@ -25,14 +23,22 @@ public class UsuarioService {
     @Autowired
     private ModelMapper modelMapper;
 
-    //se van a retornar DTOs
+    // Método para autenticar un usuario por correo y contraseña
+    public UsuarioDTO autenticarUsuario(String correo, String contrasenia) {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findByCorreoAndContrasenia(correo, contrasenia);
+        if (usuarioOptional.isPresent()) {
+            return modelMapper.map(usuarioOptional.get(), UsuarioDTO.class);
+        } else {
+            return null; // Retornar null si no existe un usuario con esas credenciales
+        }
+    }
 
     //get
     public List<UsuarioDTO> get() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         List<UsuarioDTO> usuariosDTO = usuarios.stream() //convertir lista de usuarios a lista de usuariosDTO
                                        .map(usuario -> modelMapper.map(usuario, UsuarioDTO.class))
-                                       .collect(Collectors.toList());   
+                                       .collect(Collectors.toList());
         return usuariosDTO;
     }
 
