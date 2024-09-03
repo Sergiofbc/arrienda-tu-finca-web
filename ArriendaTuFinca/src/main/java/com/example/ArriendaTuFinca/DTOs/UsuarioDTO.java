@@ -11,11 +11,7 @@ public class UsuarioDTO {
     private String correo;
     private String telefono;
     private String contrasenia;
-    private String estado;
-
-    // Puede ser un solo rol o una lista dependiendo de los requisitos
-    private String rol; // O puede ser List<String> si permites seleccionar múltiples roles
-
     private String confirmarContrasenia; // Campo de confirmación de contraseña
+    private String rol; // Tipo de usuario
+    private String estado;
 }
-

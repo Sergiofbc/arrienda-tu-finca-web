@@ -1,5 +1,4 @@
 package com.example.ArriendaTuFinca.models;
-
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,15 +19,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
-
 @Entity
 @Table(name = "Usuario")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,18 +34,6 @@ public class Usuario {
     private String correo;
     private String telefono;
     private String contrasenia;
-    Estado estado;
-
-    //@Enumerated(EnumType.STRING)
-    private String rol;
-
-    /*
-    //esto la verdad no se pa que
-    @OneToMany(mappedBy = "arrendador_id")
-    private List<Propiedad> propiedades = new ArrayList<>();
-
-    @OneToMany(mappedBy = "arrendatario_id")
-    private List<Solicitud> solicitudes = new ArrayList<>();
-
-    */
+    private Estado estado;
+    private String rol;  // Tipo de usuario (arrendador o arrendatario)
 }

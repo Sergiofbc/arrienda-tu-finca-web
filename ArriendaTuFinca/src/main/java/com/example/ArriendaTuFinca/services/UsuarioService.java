@@ -54,14 +54,21 @@ public class UsuarioService {
 
     //post
     public UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) {
+        if (!usuarioDTO.getContrasenia().equals(usuarioDTO.getConfirmarContrasenia())) {
+            throw new IllegalArgumentException("Las contraseñas no coinciden.");
+        }
+
+        if (usuarioDTO.getContrasenia().contains("ñ")) {
+            throw new IllegalArgumentException("La contraseña no puede contener la letra ñ.");
+        }
+
         Usuario usuario = modelMapper.map(usuarioDTO, Usuario.class);
-        usuario.setEstado(Estado.ACTIVE); // Establecer estado activo
+        usuario.setEstado(Estado.ACTIVE);
 
         try {
-            usuario = usuarioRepository.save(usuario); // Guardar en la base de datos
-            return modelMapper.map(usuario, UsuarioDTO.class); // Mapear de vuelta a DTO
+            usuario = usuarioRepository.save(usuario);
+            return modelMapper.map(usuario, UsuarioDTO.class);
         } catch (Exception e) {
-            // Log del error para seguimiento
             throw new RuntimeException("Error al guardar el usuario en la base de datos", e);
         }
     }

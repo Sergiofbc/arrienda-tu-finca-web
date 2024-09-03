@@ -1,4 +1,4 @@
-// Archivo: validaciones.js
+// Archivo: script-validacion-contraseña.js
 
 function validarFormulario() {
     var contrasenia = document.getElementById("contrasenia").value;
@@ -12,7 +12,7 @@ function validarFormulario() {
     }
 
     // Validar que la contraseña no contenga la letra "ñ"
-    if (contrasenia.includes("ñ") || confirmarContrasenia.includes("ñ")) {
+    if (contrasenia.includes("ñ")) {
         errorElement.innerText = "La contraseña no puede contener la letra ñ.";
         return false;
     }

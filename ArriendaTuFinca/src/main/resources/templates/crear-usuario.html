@@ -11,23 +11,28 @@
     <script src="/js/script-validacion-contraseña.js" defer></script>
 </head>
 <body>
-    <div class="login-container">
-        <div class = "cont-flecha">
-            <div class = "material-symbols-outlined boton-home" onclick="window.location = '/'">arrow_back</div>
-        </div>
-        <div class="logo"></div>
-        <h2>¡Crea tu usuario aquí!</h2>
-        <div class = "cont-formulario">
-            <form th:action="@{/api/usuarios}" method="post">
-                <input type="text" name="nombre" placeholder="Nombre" required>
-                <input type="email" name="correo" placeholder="Correo" required>
-                <input type="text" name="telefono" placeholder="Teléfono" required>
-                <input type="password" name="contrasenia" placeholder="Contraseña" required>
-                <input type="password" name="confirmarContrasenia" placeholder="Confirme su contraseña" required>
-                <button type="submit">Crear usuario</button>
-            </form>
-        </div>
-        <a th:href="@{/login}">Volver a log in</a>
+<div class="login-container">
+    <div class="cont-flecha">
+        <div class="material-symbols-outlined boton-home" onclick="window.location = '/'">arrow_back</div>
     </div>
+    <div class="logo"></div>
+    <h2>¡Crea tu usuario aquí!</h2>
+    <div class="cont-formulario">
+        <form th:action="@{/api/usuarios}" method="post" onsubmit="return validarFormulario()">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="email" name="correo" placeholder="Correo" required>
+            <input type="text" name="telefono" placeholder="Teléfono" required>
+            <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" required>
+            <input type="password" id="confirmarContrasenia" name="confirmarContrasenia" placeholder="Confirme su contraseña" required>
+            <select name="rol" required>
+                <option value="arrendador">Arrendador</option>
+                <option value="arrendatario">Arrendatario</option>
+            </select>
+            <div id="error-msg" style="color:red;"></div>
+            <button type="submit">Crear usuario</button>
+        </form>
+    </div>
+    <a th:href="@{/login}">Volver a log in</a>
+</div>
 </body>
 </html>
