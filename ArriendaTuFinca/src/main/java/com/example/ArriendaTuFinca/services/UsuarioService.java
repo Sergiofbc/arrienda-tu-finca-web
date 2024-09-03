@@ -55,11 +55,18 @@ public class UsuarioService {
     //post
     public UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario = modelMapper.map(usuarioDTO, Usuario.class);
-        usuario.setEstado(Estado.ACTIVE);
-        usuario = usuarioRepository.save(usuario);
-        usuarioDTO = modelMapper.map(usuario, UsuarioDTO.class);
-        return usuarioDTO;
+        usuario.setEstado(Estado.ACTIVE); // Establecer estado activo
+
+        try {
+            usuario = usuarioRepository.save(usuario); // Guardar en la base de datos
+            return modelMapper.map(usuario, UsuarioDTO.class); // Mapear de vuelta a DTO
+        } catch (Exception e) {
+            // Log del error para seguimiento
+            throw new RuntimeException("Error al guardar el usuario en la base de datos", e);
+        }
     }
+
+
 
     //put
     public UsuarioDTO actualizarUsuario(UsuarioDTO usuarioDTO) {

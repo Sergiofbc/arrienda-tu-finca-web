@@ -60,11 +60,19 @@ public class UsuarioController {
     }
 
     // Create
-    @CrossOrigin
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public UsuarioDTO crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-        return usuarioService.crearUsuario(usuarioDTO);
+    @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String crearUsuario(UsuarioDTO usuarioDTO, Model model) {
+        // Crear el nuevo usuario
+        UsuarioDTO nuevoUsuario = usuarioService.crearUsuario(usuarioDTO);
+
+        // Añadir un atributo para confirmar que el usuario fue creado
+        model.addAttribute("usuario", nuevoUsuario);
+        model.addAttribute("mensaje", "Usuario creado exitosamente");
+
+        // Redirigir a la página de login después de la creación del usuario
+        return "redirect:/login";
     }
+
 
     // UpdateCLARO NO FUNCIONA PORQUE NO HACE NADA CON EL ID QUE LLEGA
     @CrossOrigin

@@ -1,7 +1,5 @@
 package com.example.ArriendaTuFinca.DTOs;
 
-import com.example.ArriendaTuFinca.models.Usuario;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,14 +12,10 @@ public class UsuarioDTO {
     private String telefono;
     private String contrasenia;
     private String estado;
-    private String rol;
 
-    //tengo que mejorar el model mapper pa poder usar esta chimbada??
-    /*
-    @JsonIgnore  // Ignora este campo durante la serialización para evitar ciclos
-    private List<Propiedad> propiedades;
+    // Puede ser un solo rol o una lista dependiendo de los requisitos
+    private String rol; // O puede ser List<String> si permites seleccionar múltiples roles
 
-    @JsonIgnore
-    private List<SolicitudDTO> solicitudes;
-    */
+    private String confirmarContrasenia; // Campo de confirmación de contraseña
 }
+
