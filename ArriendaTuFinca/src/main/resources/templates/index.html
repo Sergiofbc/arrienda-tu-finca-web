@@ -1,72 +1,220 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>LogIn AirBNB</title>
+    <title>CASALUNA airBNB</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style-index.css}">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#" class="logo">Airbnb</a></li>
-                <li><a href="#">Explorar</a></li>
-                <li><a href="#">Viajes</a></li>
-                <li><a href="#">Mensaje</a></li>
-                <li><a href="#">Ayuda</a></li>
-                <li><a th:href="@{/login}" class="boton-login">Iniciar Sesión</a></li>
-                <li><a th:href="@{/crear-usuario}" class="boton-crear-usuario">Crear Usuario</a></li>
-            </ul>
+    <div class="cont-menu">
+        <div class="cont-titulo">
+            <div class="logo"></div>
+            <h1>CASALUNA</h1>
+        </div>
+        <div class="cont-tipo">
+            <button class="tipo-btn" data-content="explorar">Explorar nuevos destinos</button>
+            <button class="tipo-btn" data-content="enamoraron">Destinos que te enamoraron</button>
+        </div>
+        <nav class="nav-menu">
+            <div class="cont-sesion">
+                <div class="boton">
+                    <a th:href="@{/login}" class="btn">Log In</a>
+                </div>
+                <div class="boton">
+                    <a th:href="@{/crear-usuario}" class="btn">Crear usuario</a>
+                </div>
+            </div>
         </nav>
-    </header>
-    <main>
-        <section class="hero">
-            <h1>Encuentra tu próximo destino</h1>
-            <p>Explora más de 7 millones de alojamientos en todo el mundo</p>
-            <button>Explorar</button>
-        </section>
-        <section class="destacados">
-            <h2>Destacados</h2>
-            <div class="tarjetas">
-                <div class="tarjeta">
-                    <img src="imagen1.jpg" alt="Imagen 1">
-                    <h3>Lago Tahoe</h3>
-                    <p>California, EE. UU.</p>
-                </div>
-                <div class="tarjeta">
-                    <img src="imagen2.jpg" alt="Imagen 2">
-                    <h3>Nueva York</h3>
-                    <p>Nueva York, EE. UU.</p>
-                </div>
-                <div class="tarjeta">
-                    <img src="imagen3.jpg" alt="Imagen 3">
-                    <h3>París</h3>
-                    <p>Francia</p>
-                </div>
+    </div>
+    <div class="cont-busqueda">
+        <div class="cont-filtros">
+            <div class="cont-filtro">
+                <label for="ubicacion">Ubicación</label>
+                <input type="text" id="ubicacion" name="ubicacion">
             </div>
-        </section>
-        <section class="testimonios">
-            <h2>Lo que nuestros usuarios dicen</h2>
-            <div class="testimonio">
-                <p>"Airbnb es la mejor forma de encontrar alojamientos únicos y experimentar la cultura local."</p>
-                <p>- Juan P.</p>
+            <div class="cont-filtro">
+                <label for="fecha">Fecha</label>
+                <input type="date" id="fecha" name="fecha">
             </div>
-            <div class="testimonio">
-                <p>"Me encanta la variedad de opciones que ofrece Airbnb. Siempre encuentro algo que se adapta a mis necesidades."</p>
-                <p>- María G.</p>
+            <div class="cont-filtro">
+                <label for="personas">Personas</label>
+                <input type="number" id="personas" name="personas">
             </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Airbnb, Inc.</p>
-        <ul>
-            <li><a href="#">Términos y condiciones</a></li>
-            <li><a href="#">Política de privacidad</a></li>
-            <li><a href="#">Ayuda</a></li>
+            <button type="button">Buscar</button>
+        </div>
+    </div>
+    <div id="content" class="cards">
+        <!-- Cartas con contenido quemado -->
+        <ul class="cards">
+            <li>
+                <a href="" class="card">
+                    <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+                            <div class="card__header-text">
+                                <h3 class="card__title">Jessica Parker</h3>
+                                <span class="card__status">1 hour ago</span>
+                            </div>
+                        </div>
+                        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="" class="card">
+                    <img src="https://i.imgur.com/2DhmtJ4.jpg" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+                            <div class="card__header-text">
+                                <h3 class="card__title">Kim Cattrall</h3>
+                                <span class="card__status">3 hours ago</span>
+                            </div>
+                        </div>
+                        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="" class="card">
+                    <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+                            <div class="card__header-text">
+                                <h3 class="card__title">Jessica Parker</h3>
+                                <span class="card__tagline">Lorem ipsum dolor sit amet consectetur</span>
+                                <span class="card__status">1 hour ago</span>
+                            </div>
+                        </div>
+                        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="" class="card">
+                    <img src="https://i.imgur.com/2DhmtJ4.jpg" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+                            <div class="card__header-text">
+                                <h3 class="card__title">Kim Cattrall</h3>
+                                <span class="card__status">3 hours ago</span>
+                            </div>
+                        </div>
+                        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="" class="card">
+                    <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+                            <div class="card__header-text">
+                                <h3 class="card__title">Jessica Parker</h3>
+                                <span class="card__status">1 hour ago</span>
+                            </div>
+                        </div>
+                        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="" class="card">
+                    <img src="https://i.imgur.com/2DhmtJ4.jpg" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+                            <div class="card__header-text">
+                                <h3 class="card__title">Kim Cattrall</h3>
+                                <span class="card__status">3 hours ago</span>
+                            </div>
+                        </div>
+                        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="" class="card">
+                    <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+                            <div class="card__header-text">
+                                <h3 class="card__title">Jessica Parker</h3>
+                                <span class="card__tagline">Lorem ipsum dolor sit amet consectetur</span>
+                                <span class="card__status">1 hour ago</span>
+                            </div>
+                        </div>
+                        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="" class="card">
+                    <img src="https://i.imgur.com/2DhmtJ4.jpg" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+                            <div class="card__header-text">
+                                <h3 class="card__title">Kim Cattrall</h3>
+                                <span class="card__status">3 hours ago</span>
+                            </div>
+                        </div>
+                        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="" class="card">
+                    <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+                            <div class="card__header-text">
+                                <h3 class="card__title">Jessica Parker</h3>
+                                <span class="card__status">1 hour ago</span>
+                            </div>
+                        </div>
+                        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="" class="card">
+                    <img src="https://i.imgur.com/2DhmtJ4.jpg" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+                            <div class="card__header-text">
+                                <h3 class="card__title">Kim Cattrall</h3>
+                                <span class="card__status">3 hours ago</span>
+                            </div>
+                        </div>
+                        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                    </div>
+                </a>
+            </li>
         </ul>
-    </footer>
+    </div>
+    <script src="script-tipo-contenido.js"></script>
 </body>
 </html>
+
