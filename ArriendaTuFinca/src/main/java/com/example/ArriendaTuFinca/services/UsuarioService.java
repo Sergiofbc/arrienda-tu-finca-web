@@ -73,8 +73,6 @@ public class UsuarioService {
         }
     }
 
-
-
     //put
     public UsuarioDTO actualizarUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario = modelMapper.map(usuarioDTO, Usuario.class);

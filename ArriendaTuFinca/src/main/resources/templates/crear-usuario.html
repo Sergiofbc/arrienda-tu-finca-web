@@ -7,32 +7,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style-crear-usuario.css}">
-    <!-- Enlace al archivo JavaScript -->
-    <script src="/js/script-validacion-contraseña.js" defer></script>
+    <script src="/js/script-crear-usuario.js" defer></script>
 </head>
 <body>
-<div class="login-container">
-    <div class="cont-flecha">
-        <div class="material-symbols-outlined boton-home" onclick="window.location = '/'">arrow_back</div>
+    <div class="login-container">
+        <div class="cont-flecha">
+            <div class="material-symbols-outlined boton-home" onclick="window.location = '/'">arrow_back</div>
+        </div>
+        <div class="logo"></div>
+        <h2>¡Crea tu usuario aquí!</h2>
+        <div class="cont-formulario">
+            <form th:action="@{/api/usuarios}" method="post" onsubmit="return validarFormulario()">
+                <input type="text" name="nombre" placeholder="Nombre" required>
+                <input type="email" name="correo" placeholder="Correo" required>
+                <input type="text" name="telefono" placeholder="Teléfono" required>
+
+                <div class="rol-container">
+                    <label for="rol">Tipo de usuario:</label>
+                    <div class="checkbox-group">
+                        <label for="arrendador"><input type="checkbox" name="rol" value="arrendador" id="arrendador"> Arrendador</label>
+                        <label for="arrendatario"><input type="checkbox" name="rol" value="arrendatario" id="arrendatario"> Arrendatario</label>
+                    </div>
+                </div>
+
+                <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" required>
+                <input type="password" id="confirmarContrasenia" name="confirmarContrasenia" placeholder="Confirme su contraseña" required>
+                <div id="error-msg" style="color:red;"></div>
+                <button type="submit">Crear usuario</button>
+            </form>
+        </div>
+        <a th:href="@{/login}">Volver a log in</a>
     </div>
-    <div class="logo"></div>
-    <h2>¡Crea tu usuario aquí!</h2>
-    <div class="cont-formulario">
-        <form th:action="@{/api/usuarios}" method="post" onsubmit="return validarFormulario()">
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            <input type="email" name="correo" placeholder="Correo" required>
-            <input type="text" name="telefono" placeholder="Teléfono" required>
-            <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" required>
-            <input type="password" id="confirmarContrasenia" name="confirmarContrasenia" placeholder="Confirme su contraseña" required>
-            <select name="rol" required>
-                <option value="arrendador">Arrendador</option>
-                <option value="arrendatario">Arrendatario</option>
-            </select>
-            <div id="error-msg" style="color:red;"></div>
-            <button type="submit">Crear usuario</button>
-        </form>
-    </div>
-    <a th:href="@{/login}">Volver a log in</a>
-</div>
 </body>
 </html>
