@@ -21,8 +21,13 @@ public class ViewsController {
         return "index"; // El nombre del archivo HTML sin la extensión
     }
 
-    @GetMapping("/navegar")
-    public String mostrarPaginaNavegar() {
+    @GetMapping("/activacion")
+    public String activacion() {
+        return "navegar"; // Esto buscará un archivo llamado navegar.html en la carpeta templates
+    }
+
+    @GetMapping("/usuario-creado")
+    public String usuarioCreado() {
         return "navegar"; // Esto buscará un archivo llamado navegar.html en la carpeta templates
     }
 }

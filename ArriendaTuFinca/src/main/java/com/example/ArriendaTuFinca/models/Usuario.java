@@ -36,4 +36,5 @@ public class Usuario {
     private String contrasenia;
     private Estado estado;
     private String rol;  // Tipo de usuario (arrendador o arrendatario)
+    private Boolean autenticado = false; // Indica si el usuario está autenticado
 }

@@ -14,4 +14,5 @@ public class UsuarioDTO {
     private String confirmarContrasenia; // Campo de confirmación de contraseña
     private String rol; // Tipo de usuario
     private String estado;
+    private Boolean autenticado; // Indica si el usuario está autenticado
 }

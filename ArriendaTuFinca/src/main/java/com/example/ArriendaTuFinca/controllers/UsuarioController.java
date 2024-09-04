@@ -62,15 +62,26 @@ public class UsuarioController {
     // Create
     @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String crearUsuario(UsuarioDTO usuarioDTO, Model model) {
-        // Crear el nuevo usuario
-        UsuarioDTO nuevoUsuario = usuarioService.crearUsuario(usuarioDTO);
+        try {
+            UsuarioDTO nuevoUsuario = usuarioService.crearUsuario(usuarioDTO);
+            model.addAttribute("correo", nuevoUsuario.getCorreo());
+            return "usuario-creado";  // Redirige a la página de confirmación de creación
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            return "crear-usuario";  // Mantiene al usuario en la misma página con el mensaje de error
+        }
+    }
 
-        // Añadir un atributo para confirmar que el usuario fue creado
-        model.addAttribute("usuario", nuevoUsuario);
-        model.addAttribute("mensaje", "Usuario creado exitosamente");
 
-        // Redirigir a la página de login después de la creación del usuario
-        return "redirect:/login";
+    @GetMapping("/activar/{id}")
+    public String activarUsuario(@PathVariable Long id, Model model) {
+        try {
+            UsuarioDTO usuario = usuarioService.activarUsuario(id);
+            return "activacion";  // Redirige a la página de confirmación de activación
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            return "error";  // Redirige a una página de error si la activación falla
+        }
     }
 
 

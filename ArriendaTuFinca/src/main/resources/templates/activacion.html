@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Perfil Autenticado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style-usuario-creado.css}">
+</head>
+<body>
+<div class="confirmacion-container">
+    <div class="logo"></div>
+    <h2>¡Su perfil ha sido autenticado con éxito!</h2>
+    <p>Ahora puede iniciar sesión haciendo clic en el siguiente enlace:</p>
+    <a th:href="@{/login}">Iniciar Sesión</a>
+</div>
+</body>
+</html>

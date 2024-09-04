@@ -32,7 +32,10 @@
 
                 <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" required>
                 <input type="password" id="confirmarContrasenia" name="confirmarContrasenia" placeholder="Confirme su contraseña" required>
-                <div id="error-msg" style="color:red;"></div>
+
+                <!-- Mostrar mensaje de error si existe -->
+                <div id="error-msg" style="color:red;" th:text="${error}"></div>
+
                 <button type="submit">Crear usuario</button>
             </form>
         </div>

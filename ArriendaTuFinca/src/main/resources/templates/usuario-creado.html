@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Usuario Creado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style-usuario-creado.css}">
+</head>
+<body>
+    <div class="confirmacion-container">
+        <div class="logo"></div>
+        <h2>¡Usuario creado con éxito!</h2>
+        <p>Por favor, revise la bandeja de entrada de su correo <strong th:text="${correo}">[correo]</strong> y autentique su perfil.</p>
+        <a th:href="@{/login}">Volver al inicio de sesión</a>
+    </div>
+</body>
+</html>
