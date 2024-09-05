@@ -38,3 +38,6 @@ jobs:
         run: |
           cd ArriendaTuFinca
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Grupo-2-2 -Dsonar.projectName=''Grupo 2 2''
+      - name: Run tests
+        run: mvn test
+        continue-on-error: true
