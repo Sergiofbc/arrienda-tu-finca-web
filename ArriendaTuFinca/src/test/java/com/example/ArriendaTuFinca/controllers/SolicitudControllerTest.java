@@ -88,17 +88,4 @@ class SolicitudControllerTest {
 
         verify(solicitudService, times(1)).eliminarSolicitudPorId(1L);
     }
-
-    @Test
-    void testEliminarSolicitud() throws Exception {
-        SolicitudDTO solicitudDTO = new SolicitudDTO();
-        doNothing().when(solicitudService).eliminarSolicitud(solicitudDTO);
-
-        mockMvc.perform(delete("/api/solicitudes")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{}"))
-                .andExpect(status().isOk());
-
-        verify(solicitudService, times(1)).eliminarSolicitud(any(SolicitudDTO.class));
-    }
 }

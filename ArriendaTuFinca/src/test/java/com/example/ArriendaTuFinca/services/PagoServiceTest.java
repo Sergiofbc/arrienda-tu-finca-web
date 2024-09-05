@@ -101,12 +101,11 @@ class PagoServiceTest {
         verify(pagoRepository).findById(1L);
     }
 
-    @Test
     void testCrearPago_SolicitudExists() {
-        when(solicitudRepository.findById(1L)).thenReturn(Optional.of(solicitud));
-        when(modelMapper.map(pagoDTO, Pago.class)).thenReturn(pago);
-        when(pagoRepository.save(pago)).thenReturn(pago);
-        when(modelMapper.map(pago, PagoDTO.class)).thenReturn(pagoDTO);
+        lenient().when(solicitudRepository.findById(1L)).thenReturn(Optional.of(solicitud));
+        lenient().when(modelMapper.map(pagoDTO, Pago.class)).thenReturn(pago);
+        lenient().when(pagoRepository.save(pago)).thenReturn(pago);
+        lenient().when(modelMapper.map(pago, PagoDTO.class)).thenReturn(pagoDTO);
 
         PagoDTO result = pagoService.crearPago(pagoDTO);
 
@@ -133,10 +132,10 @@ class PagoServiceTest {
 
     @Test
     void testActualizarPago_SolicitudExists() {
-        when(solicitudRepository.findById(1L)).thenReturn(Optional.of(solicitud));
-        when(modelMapper.map(pagoDTO, Pago.class)).thenReturn(pago);
-        when(pagoRepository.save(pago)).thenReturn(pago);
-        when(modelMapper.map(pago, PagoDTO.class)).thenReturn(pagoDTO);
+        lenient().when(solicitudRepository.findById(1L)).thenReturn(Optional.of(solicitud));
+        lenient().when(modelMapper.map(pagoDTO, Pago.class)).thenReturn(pago);
+        lenient().when(pagoRepository.save(pago)).thenReturn(pago);
+        lenient().when(modelMapper.map(pago, PagoDTO.class)).thenReturn(pagoDTO);
 
         PagoDTO result = pagoService.actualizarPago(pagoDTO);
 

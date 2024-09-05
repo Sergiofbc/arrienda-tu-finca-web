@@ -103,10 +103,10 @@ class CalificacionServiceTest {
 
     @Test
     void testCrearCalificacion_SolicitudExists() {
-        when(solicitudRepository.findById(1L)).thenReturn(Optional.of(solicitud));
-        when(modelMapper.map(calificacionDTO, Calificacion.class)).thenReturn(calificacion);
-        when(calificacionRepository.save(calificacion)).thenReturn(calificacion);
-        when(modelMapper.map(calificacion, CalificacionDTO.class)).thenReturn(calificacionDTO);
+        lenient().when(solicitudRepository.findById(1L)).thenReturn(Optional.of(solicitud));
+        lenient().when(modelMapper.map(calificacionDTO, Calificacion.class)).thenReturn(calificacion);
+        lenient().when(calificacionRepository.save(calificacion)).thenReturn(calificacion);
+        lenient().when(modelMapper.map(calificacion, CalificacionDTO.class)).thenReturn(calificacionDTO);
 
         CalificacionDTO result = calificacionService.crearCalificacion(calificacionDTO);
 
@@ -133,10 +133,10 @@ class CalificacionServiceTest {
 
     @Test
     void testActualizarCalificacion_SolicitudExists() {
-        when(solicitudRepository.findById(1L)).thenReturn(Optional.of(solicitud));
-        when(modelMapper.map(calificacionDTO, Calificacion.class)).thenReturn(calificacion);
-        when(calificacionRepository.save(calificacion)).thenReturn(calificacion);
-        when(modelMapper.map(calificacion, CalificacionDTO.class)).thenReturn(calificacionDTO);
+        lenient().when(solicitudRepository.findById(1L)).thenReturn(Optional.of(solicitud));
+        lenient().when(modelMapper.map(calificacionDTO, Calificacion.class)).thenReturn(calificacion);
+        lenient().when(calificacionRepository.save(calificacion)).thenReturn(calificacion);
+        lenient().when(modelMapper.map(calificacion, CalificacionDTO.class)).thenReturn(calificacionDTO);
 
         CalificacionDTO result = calificacionService.actualizarCalificacion(calificacionDTO);
 

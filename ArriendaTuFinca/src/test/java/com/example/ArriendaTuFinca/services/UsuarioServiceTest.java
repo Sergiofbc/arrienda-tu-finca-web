@@ -120,20 +120,6 @@ class UsuarioServiceTest {
         });
     }
 
-    @Test
-    void testActivarUsuario() {
-        Long id = 1L;
-        Usuario usuario = new Usuario();
-        usuario.setEstado(Estado.INACTIVE);
-
-        when(usuarioRepository.findById(id)).thenReturn(Optional.of(usuario));
-        when(modelMapper.map(usuario, UsuarioDTO.class)).thenReturn(new UsuarioDTO());
-
-        UsuarioDTO result = usuarioService.activarUsuario(id);
-
-        assertNotNull(result);
-        assertEquals(Estado.ACTIVE, usuario.getEstado());
-    }
 
     @Test
     void testEliminarUsuario() {

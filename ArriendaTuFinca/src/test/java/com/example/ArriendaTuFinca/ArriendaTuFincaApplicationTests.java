@@ -8,6 +8,6 @@ class ArriendaTuFincaApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// Esta prueba verifica que el contexto de la aplicación se carga correctamente.
 	}
-
 }

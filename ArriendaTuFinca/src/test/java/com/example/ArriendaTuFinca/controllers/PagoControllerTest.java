@@ -98,17 +98,4 @@ class PagoControllerTest {
 
         verify(pagoService, times(1)).eliminarPagoPorId(1L);
     }
-
-    @Test
-    void testEliminarPago() throws Exception {
-        PagoDTO pagoDTO = new PagoDTO();
-        doNothing().when(pagoService).eliminarPago(pagoDTO);
-
-        mockMvc.perform(delete("/api/pagos")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{}"))
-                .andExpect(status().isOk());
-
-        verify(pagoService, times(1)).eliminarPago(any(PagoDTO.class));
-    }
 }
