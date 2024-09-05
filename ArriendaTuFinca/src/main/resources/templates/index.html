@@ -20,12 +20,11 @@
             <button class="tipo-btn" data-content="enamoraron">Destinos que te enamoraron</button>
         </div>
         <nav class="nav-menu">
-            <div class="cont-sesion">
-                <div class="boton">
-                    <a th:href="@{/login}" class="btn">Log In</a>
-                </div>
-                <div class="boton">
-                    <a th:href="@{/crear-usuario}" class="btn">Crear usuario</a>
+            <div class="profile-container">
+                <img th:src="@{/images/incognito.jpg}" alt="Perfil">
+                <div class="profile-menu">
+                    <a th:href="@{/login}">Log In</a>
+                    <a th:href="@{/crear-usuario}">Crear usuario</a>
                 </div>
             </div>
         </nav>
@@ -44,7 +43,9 @@
                 <label for="personas">Personas</label>
                 <input type="number" id="personas" name="personas">
             </div>
-            <button type="button">Buscar</button>
+            <div class = "cont-lupa">
+                <div class = "material-symbols-outlined boton-home" onclick="window.location = '/'">search</div>
+            </div>
         </div>
     </div>
     <div id="content" class="cards">
@@ -212,7 +213,7 @@
             </li>
         </ul>
     </div>
-    <script src="script-tipo-contenido.js"></script>
+    <script src="/js/script-index.js" defer></script>
 </body>
 </html>
 

@@ -45,7 +45,6 @@ public class Propiedad {
     private boolean asador;
     private int valor_noche;
     private boolean visible;
-    private int calificacion;
-
+    private float calificacion;
     Estado estado;
 }

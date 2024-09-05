@@ -37,11 +37,17 @@ public class UsuarioService {
     public UsuarioDTO autenticarUsuario(String correo, String contrasenia) {
         Optional<Usuario> usuarioOptional = usuarioRepository.findByCorreoAndContrasenia(correo, contrasenia);
         if (usuarioOptional.isPresent()) {
-            return modelMapper.map(usuarioOptional.get(), UsuarioDTO.class);
+            Usuario usuario = usuarioOptional.get();
+            if (usuario.getAutenticado()) {
+                return modelMapper.map(usuario, UsuarioDTO.class); // El usuario está autenticado
+            } else {
+                throw new IllegalArgumentException("Debe autenticar su usuario antes de iniciar sesión.");
+            }
         } else {
             return null; // Retornar null si no existe un usuario con esas credenciales
         }
     }
+
 
     //get
     public List<UsuarioDTO> get() {

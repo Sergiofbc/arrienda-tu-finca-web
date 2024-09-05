@@ -39,17 +39,24 @@ public class UsuarioController {
     @CrossOrigin
     @PostMapping("/login")
     public String login(@RequestParam String correo, @RequestParam String contrasenia, Model model) {
-        UsuarioDTO usuarioAutenticado = usuarioService.autenticarUsuario(correo, contrasenia);
-        if (usuarioAutenticado != null) {
-            // Usuario autenticado correctamente
-            model.addAttribute("usuario", usuarioAutenticado);
-            return "redirect:/navegar"; // Redirige a la página navegar.html
-        } else {
-            // Autenticación fallida
-            model.addAttribute("error", "Correo o contraseña incorrectos");
-            return "login"; // Vuelve a la página de login con un mensaje de error
+        try {
+            UsuarioDTO usuarioAutenticado = usuarioService.autenticarUsuario(correo, contrasenia);
+            if (usuarioAutenticado != null) {
+                // Usuario autenticado correctamente
+                model.addAttribute("usuario", usuarioAutenticado);
+                return "redirect:/"; // Redirige a la página de navegación o dashboard
+            } else {
+                // Este caso puede ser opcional, ya que si el usuario no está autenticado, el servicio lanzará una excepción
+                model.addAttribute("error", "Correo o contraseña incorrectos");
+                return "login"; // Vuelve a la página de login con un mensaje de error
+            }
+        } catch (IllegalArgumentException e) {
+            // Captura la excepción si el usuario no ha autenticado su perfil
+            model.addAttribute("error", e.getMessage());
+            return "login"; // Vuelve a la página de login con el mensaje de error
         }
     }
+
 
 
     // Validar

@@ -5,18 +5,18 @@
 body {
     margin: 0;
     padding: 0;
-    background: #ffffff;
     font-family: "Playfair Display", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
     overflow-x: hidden;
+    background-color: #ffffff;
 }
 
 .cont-menu {
     width: 90vw;
-    height: 5vw;
+    height: 6vw;
     background-color: rgba(204, 188, 153, 0.37);
     padding: 1vw;
     border-radius: 0.5vw;
@@ -30,6 +30,18 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
+}
+
+.cont-busqueda {
+    position: absolute;
+    top: 6vw;
+    border-radius: 2vw;
+    padding: 1vw;
+    background-color: #007ff34d;
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    margin-top: 6vw;
 }
 
 .cont-titulo {
@@ -54,11 +66,14 @@ h1 {
 }
 
 .cont-tipo {
+    position: absolute;
+    left: 30vw;
     display: flex;
     gap: 2vw;
 }
 
 .tipo-btn {
+    font-family: 'Roboto Condensed', sans-serif;
     background-color: #0247c6;
     color: #fff;
     border: none;
@@ -79,16 +94,18 @@ h1 {
     gap: 2vw;
 }
 
-.cont-busqueda {
-    display: flex;
-    align-items: center;
-    gap: 2vw;
-    margin-top: 6vw;
-}
-
 .cont-filtros {
     display: flex;
     gap: 1vw;
+}
+
+.cont-lupa{
+
+}
+
+.cont-lupa:hover {
+    cursor: pointer;
+    color: #2991ff;
 }
 
 .boton {
@@ -230,3 +247,54 @@ h1 {
     -webkit-line-clamp: 3;
     overflow: hidden;
 }
+
+/*User logo styles-----------------*/
+.cont-menu {
+    /* Otros estilos */
+    left: 45vw;
+    position: relative; /* Para que el menú desplegable esté posicionado relativamente a este contenedor */
+}
+
+.profile-container {
+    right: 4vw;
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: -2.7vw;
+    background-color: rgba(204, 188, 153, 0.9);
+    padding: 1vw;
+    border-radius: 0.5vw;
+    box-shadow: 0 0 0.5vw rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    width: 10vw;
+}
+
+.profile-menu a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    padding: 0.5vw 1vw;
+    font-size: 1vw;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.profile-menu a:hover {
+    background-color: #2991ff;
+    color: #fff;
+}
+
+.profile-container:hover .profile-menu {
+    display: block;
+}
+
+.profile-container img {
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+}
+
