@@ -55,5 +55,14 @@ public class PropiedadController {
     public void eliminarPropiedad(@PathVariable Long id) {
         propiedadService.eliminarPropiedad(id);
     }
+
+
+    // Método para buscar propiedades por filtros de ubicación y/o cantidad de personas
+    @CrossOrigin
+    @GetMapping(value = "/buscar", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PropiedadDTO> buscarPropiedades(@RequestParam(value = "ubicacion", required = false) String ubicacion,
+                                                @RequestParam(value = "cant_personas", required = false) Integer cantPersonas) {
+        return propiedadService.buscarPropiedadesPorFiltros(ubicacion, cantPersonas);
+    }
     
 }
